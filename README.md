@@ -146,8 +146,10 @@ npm run docker:down
 
 ## 🔐 Default Credentials
 
+> ⚠️ **Warning:** These are development-only credentials. Change them before deploying to production.
+
 ```
-Email: admin@company.com
+Email: admin@example.com
 Password: admin123
 ```
 
@@ -292,7 +294,8 @@ For testing purposes, there's a default admin user:
 ## Environment Variables
 
 Make sure to set these in your `.env` file:
-- `JWT_SECRET`: Secret key for JWT token signing
+- `JWT_SECRET`: Secret key for JWT token signing (use a long, random string in production)
+- `MONGODB_URI`: MongoDB connection string (e.g., `mongodb://localhost:27017/employee-management`)
 - `PORT`: Server port (default: 3000)
 - `NODE_ENV`: Environment (development/production)
 
@@ -300,5 +303,6 @@ Make sure to set these in your `.env` file:
 
 - JWT tokens expire after 24 hours
 - Passwords are hashed using bcrypt with salt rounds of 10
-- This uses an in-memory store - replace with a database for production
-- Change the JWT_SECRET in production
+- The default in-memory user store is for development only — configure `MONGODB_URI` to use MongoDB in production
+- Change the `JWT_SECRET` in production to a strong, unique value
+- Remove or disable default admin credentials before going to production
